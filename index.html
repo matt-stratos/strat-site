@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Stratos Composites — composite manufacturing
+      process planning software that saves time and reduces cost."
+    />
+    <title>Stratos Composites</title>
+    <link rel="stylesheet" href="style.css" />
+
+    <!--
+      Favicon: swap this out for a real .ico or .png later.
+      A quick favicon can be generated from your logo mark at
+      https://favicon.io
+    -->
+    <link rel="icon" href="assets/horizontalAlternate.svg" type="image/svg+xml" />
+  </head>
+
+  <body>
+    <!-- ========================================================
+         HERO SECTION
+         Full-viewport landing panel. Contains the logo, tagline,
+         and a single email CTA. Expand this file with additional
+         <section> elements below <main> as the site grows.
+    ======================================================== -->
+    <main>
+      <section class="hero" aria-label="Stratos Composites introduction">
+        <!-- Noise overlay rendered via CSS pseudo-element on .hero -->
+
+        <div class="hero__inner">
+          <!-- Primary logo: horizontal SVG lockup -->
+          <img
+            class="hero__logo"
+            src="assets/horizontalAlternate.svg"
+            alt="Stratos Composites logo"
+            width="480"
+            height="120"
+          />
+
+          <!-- Tagline -->
+          <p class="hero__tagline">From Design to Layup. Faster.</p>
+
+          <!-- Sub-copy: one line of context below the tagline -->
+          <p class="hero__sub">
+            Composite manufacturing process planning software built to
+            eliminate manual work and cut lead time.
+          </p>
+
+          <!-- Primary CTA -->
+          <a class="hero__cta" href="mailto:info@stratoscomposites.com">
+            Get in Touch
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ========================================================
+         FOOTER
+         Minimal for now. Expands naturally when nav links are
+         added in a future iteration.
+    ======================================================== -->
+    <footer class="site-footer">
+      <p class="site-footer__copy">
+        &copy; <span id="year"></span> Stratos Composites. All rights reserved.
+      </p>
+      <p class="site-footer__contact">
+        <a href="mailto:info@stratoscomposites.com">
+          info@stratoscomposites.com
+        </a>
+      </p>
+    </footer>
+
+    <script>
+      // Automatically keeps the copyright year current.
+      document.getElementById("year").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
+</html>

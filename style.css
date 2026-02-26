@@ -1,0 +1,244 @@
+/* ================================================================
+   STRATOS COMPOSITES — style.css
+   Organized in layers:
+   1. Custom properties (design tokens)
+   2. Reset / base
+   3. Layout
+   4. Hero section
+   5. Footer
+   6. Utilities
+   7. Responsive breakpoints
+================================================================ */
+
+/* ----------------------------------------------------------------
+   1. CUSTOM PROPERTIES
+   All brand colors, spacing, and typography scales live here.
+   Changing a value here propagates through the entire sheet.
+---------------------------------------------------------------- */
+:root {
+  /* Brand colors (from Colors.txt) */
+  --color-carbon:     #23272a; /* Carbon Black  — primary background */
+  --color-cloud:      #e9e8eb; /* Cloud White   — body text, light surfaces */
+  --color-orange:     #f57123; /* Alert Orange  — primary accent, CTA */
+  --color-stratos:    #417ced; /* Stratos Blue  — secondary accent */
+  --color-deep-blue:  #050640; /* Deep Blue     — dark surface option */
+
+  /* Typography */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* Spacing scale (multiples of 8px) */
+  --space-1:  0.5rem;   /*  8px */
+  --space-2:  1rem;     /* 16px */
+  --space-3:  1.5rem;   /* 24px */
+  --space-4:  2rem;     /* 32px */
+  --space-6:  3rem;     /* 48px */
+  --space-8:  4rem;     /* 64px */
+  --space-12: 6rem;     /* 96px */
+
+  /* Transitions */
+  --transition-base: 200ms ease;
+}
+
+/* ----------------------------------------------------------------
+   2. RESET / BASE
+   Minimal reset. Preserves useful browser defaults while
+   eliminating inconsistencies.
+---------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* Prevents layout shift when a scrollbar appears */
+  scrollbar-gutter: stable;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: var(--color-carbon);
+  color: var(--color-cloud);
+
+  /* Flex column so the footer is always pushed to the bottom
+     even on short-content viewports */
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ----------------------------------------------------------------
+   3. LAYOUT
+---------------------------------------------------------------- */
+main {
+  /* Grows to fill remaining space between body top and footer */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ----------------------------------------------------------------
+   4. HERO SECTION
+---------------------------------------------------------------- */
+.hero {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-4);
+  overflow: hidden;
+
+  /* Subtle radial glow behind the logo area using brand accent */
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    rgba(65, 124, 237, 0.08) 0%,
+    transparent 70%
+  ),
+  var(--color-carbon);
+}
+
+/* Faint grid overlay — adds technical depth without being noisy */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(233, 232, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233, 232, 235, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative; /* sits above the ::before overlay */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 760px;
+  width: 100%;
+}
+
+.hero__logo {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+}
+
+.hero__tagline {
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--color-cloud);
+}
+
+/* Orange accent on "Faster." — draws the eye to the payoff word */
+.hero__tagline::after {
+  content: "";
+}
+
+.hero__sub {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: rgba(233, 232, 235, 0.7);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.hero__cta {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-6);
+  background-color: var(--color-orange);
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  transition: background-color var(--transition-base),
+              transform var(--transition-base);
+}
+
+.hero__cta:hover,
+.hero__cta:focus-visible {
+  background-color: #d45e18; /* 15% darker than Alert Orange */
+  transform: translateY(-2px);
+}
+
+.hero__cta:focus-visible {
+  outline: 2px solid var(--color-stratos);
+  outline-offset: 4px;
+}
+
+/* ----------------------------------------------------------------
+   5. FOOTER
+---------------------------------------------------------------- */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-4);
+  border-top: 1px solid rgba(233, 232, 235, 0.08);
+  font-size: 0.875rem;
+  color: rgba(233, 232, 235, 0.45);
+}
+
+.site-footer a {
+  color: rgba(233, 232, 235, 0.65);
+  transition: color var(--transition-base);
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--color-orange);
+}
+
+/* ----------------------------------------------------------------
+   6. RESPONSIVE BREAKPOINTS
+---------------------------------------------------------------- */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+  .hero__logo {
+    max-width: 300px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .hero {
+    padding: var(--space-6) var(--space-3);
+  }
+
+  .hero__logo {
+    max-width: 220px;
+  }
+
+  .hero__cta {
+    width: 100%;
+    text-align: center;
+  }
+
+  .site-footer {
+    text-align: center;
+  }
+}
