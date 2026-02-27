@@ -1,7 +1,6 @@
 /* ================================================================
    STRATOS COMPOSITES — style.css
-   Organized in layers:
-   1. Custom properties (design tokens)
+   1. Custom properties
    2. Reset / base
    3. Layout
    4. Hero section
@@ -17,23 +16,23 @@
 ---------------------------------------------------------------- */
 :root {
   /* Brand colors (from Colors.txt) */
-  --color-carbon:     #23272a; /* Carbon Black  — primary background */
-  --color-cloud:      #e9e8eb; /* Cloud White   — body text, light surfaces */
-  --color-orange:     #f57123; /* Alert Orange  — primary accent, CTA */
-  --color-stratos:    #417ced; /* Stratos Blue  — secondary accent */
-  --color-deep-blue:  #050640; /* Deep Blue     — dark surface option */
+  --color-carbon: #23272a;
+  --color-cloud: #e9e8eb;
+  --color-orange: #f57123;
+  --color-stratos: #417ced;
+  --color-deep-blue: #050640;
 
   /* Typography */
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
-  /* Spacing scale (multiples of 8px) */
-  --space-1:  0.5rem;   /*  8px */
-  --space-2:  1rem;     /* 16px */
-  --space-3:  1.5rem;   /* 24px */
-  --space-4:  2rem;     /* 32px */
-  --space-6:  3rem;     /* 48px */
-  --space-8:  4rem;     /* 64px */
-  --space-12: 6rem;     /* 96px */
+  /* Spacing scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-12: 6rem;
 
   /* Transitions */
   --transition-base: 200ms ease;
@@ -86,7 +85,6 @@ a {
    3. LAYOUT
 ---------------------------------------------------------------- */
 main {
-  /* Grows to fill remaining space between body top and footer */
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -105,16 +103,16 @@ main {
   padding: var(--space-8) var(--space-4);
   overflow: hidden;
 
-  /* Subtle radial glow behind the logo area using brand accent */
-  background: radial-gradient(
-    ellipse 80% 60% at 50% 40%,
-    rgba(65, 124, 237, 0.08) 0%,
-    transparent 70%
-  ),
-  var(--color-carbon);
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%,
+      rgba(65, 124, 237, 0.10) 0%,
+      rgba(65, 124, 237, 0.07) 25%,
+      rgba(65, 124, 237, 0.03) 50%,
+      rgba(65, 124, 237, 0.01) 65%,
+      transparent 80%),
+    var(--color-carbon);
 }
 
-/* Faint grid overlay — adds technical depth without being noisy */
 .hero::before {
   content: "";
   position: absolute;
@@ -127,7 +125,7 @@ main {
 }
 
 .hero__inner {
-  position: relative; /* sits above the ::before overlay */
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,7 +148,6 @@ main {
   color: var(--color-cloud);
 }
 
-/* Orange accent on "Faster." — draws the eye to the payoff word */
 .hero__tagline::after {
   content: "";
 }
@@ -158,14 +155,15 @@ main {
 .hero__sub {
   font-size: clamp(1rem, 1.8vw, 1.2rem);
   color: rgba(233, 232, 235, 0.7);
-  max-width: 520px;
+  max-width: 480px;
   line-height: 1.7;
 }
 
 .hero__cta {
   display: inline-block;
   margin-top: var(--space-2);
-  padding: var(--space-2) var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  min-width: 200px;
   background-color: var(--color-orange);
   color: #fff;
   font-size: 1rem;
@@ -174,12 +172,12 @@ main {
   text-transform: uppercase;
   border-radius: 4px;
   transition: background-color var(--transition-base),
-              transform var(--transition-base);
+    transform var(--transition-base);
 }
 
 .hero__cta:hover,
 .hero__cta:focus-visible {
-  background-color: #d45e18; /* 15% darker than Alert Orange */
+  background-color: #d45e18;
   transform: translateY(-2px);
 }
 
@@ -212,11 +210,17 @@ main {
   color: var(--color-orange);
 }
 
+.site-footer__address {
+  font-style: normal;
+  color: rgba(233, 232, 235, 0.45);
+  font-size: 0.875rem;
+}
+
 /* ----------------------------------------------------------------
    6. RESPONSIVE BREAKPOINTS
 ---------------------------------------------------------------- */
 
-/* Tablet and below */
+/* Tablet */
 @media (max-width: 768px) {
   .hero__logo {
     max-width: 300px;
